@@ -1,16 +1,11 @@
 pipeline {
     agent any
-    environment {
-        IMAGE_NAME = 'sanjeevkt720/jenkins-flask-app'
-        IMAGE_TAG = "${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        KUBECONFIG = credentials('kubeconfig-credentials-id')
 
-    }
     stages {
 
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/kodekloudhub/jenkins-project.git', branch: 'main'
+                git url: 'https://github.com/janessym/jenkins-project.git', branch: 'main'
                 sh "ls -ltr"
             }
         }
