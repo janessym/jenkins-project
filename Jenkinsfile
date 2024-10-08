@@ -2,21 +2,12 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Checkout') {
+        stage('Install Python') {
             steps {
-                git url: 'https://github.com/janessym/jenkins-project.git', branch: 'main'
-                sh "ls -ltr"
-            }
-        }
-        stage('Setup') {
-            steps {
-                sh "pip install -r requirements.txt"
-            }
-        }
-        stage('Test') {
-            steps {
-                sh "pytest"
+                script {
+                    sh '''
+                    apt-get update && apt-get install -y python3 python3-pip
+                    '''
             }
         }
     }
